@@ -1,0 +1,60 @@
+package com.axsos.Taqadam.Controller;
+
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.axsos.Taqadam.Models.Student;
+import com.axsos.Taqadam.Service.StudentService;
+
+@Controller
+public class StudentController {
+	
+	
+	    
+	@Controller
+	public class Users {
+	    private StudentService studentService;
+	    
+	  
+	    
+	    public Users(StudentService studentService) {
+			super();
+			this.studentService = studentService;
+		}
+
+		@RequestMapping("/registration/student")
+	    public String registerForm(@Valid @ModelAttribute("student") Student student, BindingResult result) {
+	        return "registrationPage.jsp";
+	    }
+	    
+	    @PostMapping("/registration/student")
+	    public String registration(@Valid @ModelAttribute("student") Student student, BindingResult result, Model model, HttpSession session) {
+	        if (result.hasErrors()) {
+	            return "registrationPage.jsp";
+	        }
+	        studentService.saveWithStudentRole(student);
+	        return "redirect:/home";
+	    }
+	    
+	    
+	    @RequestMapping("/login")
+	    public String login() {
+	        return "loginPage.jsp";
+	    }
+	 @RequestMapping("/home")
+	 public String home(Student student,Model model) {
+		 Student thisUser = studentService.findByEmail(student.getEmail());
+		 model.addAttribute("thisUser", thisUser);
+		 return "home.jsp";
+	 }
+	}
+	}
+
+

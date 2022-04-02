@@ -1,0 +1,22 @@
+package com.axsos.Taqadam.Controller;
+
+import org.springframework.stereotype.Controller;
+
+import com.axsos.Taqadam.Service.ProjectService;
+import com.axsos.Taqadam.Service.UserService;
+
+@Controller
+public class ProjectController {
+	
+	private ProjectService projectService;
+	private UserService userService;
+	public ProjectController(ProjectService projectService, UserService userService) {
+		
+		this.projectService = projectService;
+		this.userService = userService;
+	}
+
+	
+	
+
+}

@@ -1,0 +1,215 @@
+package com.axsos.Taqadam.Models;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+@Entity
+@Table(name="companies")
+public class Company {
+	 @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    private Long id;
+	    
+	    @NotEmpty(message="user name is required!")
+	    @Size(min=3, max=30, message="user name must be between 3 and 30 characters")
+	    private String userName;
+	    
+	    
+	    @NotEmpty(message="Email is required!")
+	    @Email(message="Please enter a valid email!")
+	    private String email;
+	    
+	    @Size(min=3, max=30, message="location must be between 3 and 30 characters")
+	    @NotEmpty(message="location is required!")
+	    private String location;
+	    
+	    @Size(min=3, max=30, message="bio must be between 3 and 30 characters")
+	    @NotEmpty(message="bio is required!")
+	    private String bio;
+	    
+	    @Size(min=3, max=30, message="field must be between 3 and 30 characters")
+	    @NotEmpty(message="field is required!")
+	    private String field;
+	    
+	    @NotEmpty(message="Password is required!")
+	    @Size(min=8, max=128, message="Password must be between 8 and 128 characters")
+	    private String password;
+	    
+	    @ManyToMany(fetch = FetchType.LAZY)
+	    @JoinTable(
+	        name = "comments", 
+	        joinColumns = @JoinColumn(name = "company_id"), 
+	        inverseJoinColumns = @JoinColumn(name = "project_id")
+	    )     
+	    private List<Project> projectsComments;
+	    
+	    @ManyToMany(fetch = FetchType.EAGER)
+	    @JoinTable(
+	        name = "companies_roles", 
+	        joinColumns = @JoinColumn(name = "companies_id"), 
+	        inverseJoinColumns = @JoinColumn(name = "role_id"))
+	    private List<Role> roles;
+	    
+	    @ManyToMany(fetch = FetchType.LAZY)
+	    @JoinTable(
+	        name = "rates", 
+	        joinColumns = @JoinColumn(name = "company_id"), 
+	        inverseJoinColumns = @JoinColumn(name = "project_id")
+	    )     
+	    private List<Project> projectsRates;
+	    
+	    @ManyToMany(fetch = FetchType.LAZY)
+	    @JoinTable(
+	        name = "list", 
+	        joinColumns = @JoinColumn(name = "company_id"), 
+	        inverseJoinColumns = @JoinColumn(name = "project_id")
+	    )     
+	    private List<Project> projectsList;
+	    
+	    @Column(updatable=false)
+	    @DateTimeFormat(pattern="yyyy-MM-dd")
+	    private Date createdAt;
+	    @DateTimeFormat(pattern="yyyy-MM-dd")
+	    private Date updatedAt;
+	    
+	    @Transient
+	    @NotEmpty(message="Confirm Password is required!")
+	    @Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
+	    private String confirm;
+
+		public Company() {
+			super();
+		}
+
+		public Company(
+				@NotEmpty(message = "user name is required!") @Size(min = 3, max = 30, message = "user name must be between 3 and 30 characters") String userName,
+				@NotEmpty(message = "Email is required!") @Email(message = "Please enter a valid email!") String email,
+				@Size(min = 3, max = 30, message = "location must be between 3 and 30 characters") @NotEmpty(message = "location is required!") String location,
+				@Size(min = 3, max = 30, message = "bio must be between 3 and 30 characters") @NotEmpty(message = "bio is required!") String bio,
+				@Size(min = 3, max = 30, message = "field must be between 3 and 30 characters") @NotEmpty(message = "field is required!") String field,
+				@NotEmpty(message = "Password is required!") @Size(min = 8, max = 128, message = "Password must be between 8 and 128 characters") String password,
+				@NotEmpty(message = "Confirm Password is required!") @Size(min = 8, max = 128, message = "Confirm Password must be between 8 and 128 characters") String confirm) {
+			super();
+			this.userName = userName;
+			this.email = email;
+			this.location = location;
+			this.bio = bio;
+			this.field = field;
+			this.password = password;
+			this.confirm = confirm;
+		}
+
+		public Long getId() {
+			return id;
+		}
+
+
+		public String getUserName() {
+			return userName;
+		}
+
+		public void setUserName(String userName) {
+			this.userName = userName;
+		}
+
+		public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
+		}
+
+		public String getLocation() {
+			return location;
+		}
+
+		public void setLocation(String location) {
+			this.location = location;
+		}
+
+		public String getBio() {
+			return bio;
+		}
+
+		public void setBio(String bio) {
+			this.bio = bio;
+		}
+
+		public String getField() {
+			return field;
+		}
+
+		public void setField(String field) {
+			this.field = field;
+		}
+
+		public String getPassword() {
+			return password;
+		}
+
+		public void setPassword(String password) {
+			this.password = password;
+		}
+
+		public String getConfirm() {
+			return confirm;
+		}
+
+		public void setConfirm(String confirm) {
+			this.confirm = confirm;
+		}
+		
+		public List<Project> getProjectsComments() {
+			return projectsComments;
+		}
+
+		public void setProjectsComments(List<Project> projectsComments) {
+			this.projectsComments = projectsComments;
+		}
+
+		public List<Project> getProjectsRates() {
+			return projectsRates;
+		}
+
+		public void setProjectsRates(List<Project> projectsRates) {
+			this.projectsRates = projectsRates;
+		}
+
+		public List<Project> getProjectsList() {
+			return projectsList;
+		}
+
+		public void setProjectsList(List<Project> projectsList) {
+			this.projectsList = projectsList;
+		}
+
+		@PrePersist
+	    protected void onCreate(){
+	        this.createdAt = new Date();
+	    }
+	    @PreUpdate
+	    protected void onUpdate(){
+	        this.updatedAt = new Date();
+	    }
+	    
+}

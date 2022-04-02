@@ -1,0 +1,5 @@
+package com.axsos.Taqadam.Repository;
+
+public interface dasd {
+
+}

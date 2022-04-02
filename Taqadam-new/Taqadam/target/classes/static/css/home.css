@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.eng{
+    background-color:#748e83;
+    padding: 20px;
+    border: #748e83 solid 2px;
+    border-radius: 30px;
+}
+h1{color: #ffd60a;}
+.row button{
+    border: 2px #ffd60a solid;
+    height: 50px;
+    background-color: #ffd60a;
+}
+.rate{
+    background-color: #224c3c;
+}
+body{
+    
+    background-color: wheat;
+    opacity: 0.9;
+}
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}

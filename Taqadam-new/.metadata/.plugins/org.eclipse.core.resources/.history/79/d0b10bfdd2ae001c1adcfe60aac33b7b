@@ -1,0 +1,12 @@
+package com.axsos.Taqadam.Repository;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.axsos.Taqadam.Models.Association;
+import com.axsos.Taqadam.Models.Student;
+
+@Repository
+public interface AssociationRepository extends CrudRepository<Association, Long> {
+	Association findByEmail(String email);
+}
