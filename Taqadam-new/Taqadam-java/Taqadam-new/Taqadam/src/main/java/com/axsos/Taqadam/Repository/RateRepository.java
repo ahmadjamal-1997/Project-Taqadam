@@ -8,5 +8,5 @@ import com.axsos.Taqadam.Models.Rate;
 
 public interface RateRepository extends CrudRepository<Rate,Long> {
 	List<Rate> findAllByProjectId(Long id); 
-
+	List<Rate> findAllByUserId(Long id);
 }

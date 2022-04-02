@@ -11,10 +11,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <title>project</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script>
+		$(document).ready(function(){
+		  $("#myInput").on("keyup", function() {
+		    var value = $(this).val().toLowerCase();
+		    $("#myTitle section").filter(function() {
+		      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		    });
+		  });
+		});
+	</script>
     <style>
         #information {
             background-color: #97a396;
@@ -118,39 +133,51 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #b4bcb2;">
         <div class="container">
-            <img src='/photo/taqdam-01.png' height="45" alt="movie_logo">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon" style="color: white;"></span>
-            </button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar brand -->
+                <a class="navbar-brand mt-2 mt-lg-0" href="/home">
+                    <img src="/photo/taqdam-01.png" height="45" alt="taqadm_logo">
+                </a>
+                <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a href="/" class="btn outline-dark btn-sm ms-3" style="color:black; font-size:16px;">Home</a>
-                    </li>
-                    <li class="nav-item" >
-                        <select class="form-select" style="background-color: #b4bcb2;border: none;font-size:16px;color: black;" aria-label="Default select example">
-                            <option selected>Specialist</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                        <a class="nav-link text-white fs-5" href="/main">Home </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="btn outline-dark btn-sm ms-3"
-                            style="color:black; font-size:16px;">Companies</a>
+                        <a class="nav-link text-white fs-5" href="#">About Us</a>
                     </li>
-
-                    <li class="nav-item">
-                        <a href="" class="btn outline-dark btn-sm ms-3"
-                            style="color:black; font-size:16px;">Associations</a>
+                    <li class="nav-item ">
+                        <a class="nav-link text-white fs-5" href="#">Contact Us</a>
                     </li>
                 </ul>
-                <div class="nav-item">
-                    <a href="" class="btn btn-outline-secondary" style="font-size:16px;color: black;">Logout</a>
-                </div>
-
+                <!-- Left links -->
+            </div>
+            <div class="d-flex align-items-center ">
+                <ul class="nav nav-tabs " style="border: none;">
+                    <li class="nav-item active me-5">
+	                    <form class="d-flex input-group w-auto " style="height:44px;">
+						      <input
+						        type="search"
+						        class="form-control rounded"
+						        placeholder="Search"
+						        aria-label="Search"
+						        aria-describedby="search-addon"
+						        id="myInput"
+						      />
+						      <span class="input-group-text border-0" id="search-addon">
+						        <i class="fa fa-search ms-2" ></i>
+						      </span>
+						    </form>
+                    	</li>
+                    	<li class="nav-item">
+                    	<form id="logoutForm" method="POST" action="/logout" >
+					        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					        <input class="btn btn-outline-secondary active" type="submit" value="Log out!" />
+					    </form>
+                        
+                   		</li>
+               	 </ul>
             </div>
         </div>
     </nav>
@@ -223,51 +250,44 @@
                 </div>
             </div>
         </div>
-        <c:forEach var = "project" items = "${allProjects }">
         <div class="container-fluid">
-            <div class="row p-3">
+        <div id="myTitle">
+            <div class="row">
+        <c:forEach var = "project" items = "${allProjects }">
+        
                 <!-- <div class="col-8"> -->
-                <div class="card container-fluid col-3 mx-2" style="width: 18rem;">
+                <section class="card container-fluid col-3 mx-2 mb-2" style="width: 18rem;">
                     <img class="card-img-top" src="/photo/engineer.jpg">
                     <div class="card-body">
-                        <h5 class="card-title">${project.title }</h5>
-                        <p class="card-text">${project.field }
-                       </p>
+                        <h5 class="card-title"><c:out value="${project.title }"/></h5>
+                        <p class="card-text"><c:out value="${project.field }"/></p>
                         <div class="row" style="display: flex;justify-content: space-around">
                             <div class="col-6 ">
-                                <a href="#" class="btn btn-warning fs-5" style="height: 50px;width: 160px;">See
-                                    Details</a>
+                                <a href="/project/details/${project.id}" class="btn btn-warning fs-5" style="height: 50px;width: 160px;">Project Details</a>
                             </div>
                             <div
                                 class="col-2 bg-warning rounded-circle d-flex justify-content-center align-middle text-black fs-5">
-                                <p class="mt-2">5</p>
+                                <p class="mt-2"><c:out value="${project.avg }"></c:out> </p>
                             </div>
                         </div>
                         <!-- </div> -->
                     </div>
-                </div>
+                
                 <div class="col-9 fs-3" style="color:#224c3c ;">
-                    <div class="row">
-                        <div class="col">${project.title }</div>
-                    </div>
-                    <div class="row" style="height:200px;">
-                        <div class="col">${project.description }</div>
-                    </div>
-                    <div class="row mx-1">
+                    <div class="row me-5">
                         <div class="col">Edit</div>
                     </div>
-                    <div class="row d-flex align-items-end" >
+                    
                         <div class="col">
                         <div class="rounded-circle" style="height:80px;width:80px;background-color:#fddf4e;">
                         <a  href="/edit/project/${project.id }"><img class="mx-3 mt-3" style="height:40px;width:40px;" src="/photo/pencil.png"></a></div>
                         </div>
                     </div>
-                </div>
+                </section>
                 </c:forEach>
             </div>
         </div>
-    </div>
-
+		</div>
 
 
 </body>

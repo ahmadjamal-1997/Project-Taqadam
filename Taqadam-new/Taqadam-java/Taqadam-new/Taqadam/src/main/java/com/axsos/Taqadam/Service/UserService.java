@@ -126,6 +126,9 @@ public class UserService {
     public List<Rate> allRatesForProject(Long id){
     	return rateRepo.findAllByProjectId(id);
     }
+    public List<Rate> allRatesForUser(Long id){
+    	return rateRepo.findAllByUserId(id);
+    }
     public Rate createRate(Rate rate) {
     	return rateRepo.save(rate);
     }

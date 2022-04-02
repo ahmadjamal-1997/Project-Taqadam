@@ -35,6 +35,8 @@ public class Project {
 		    @Size(min=3, max=30, message="title must be between 3 and 30 characters")
 		    private String title;
 		    
+		    private int avg;
+		    
 		    @NotEmpty(message="field is required!")
 		    private String field;
 		    
@@ -147,6 +149,14 @@ public class Project {
 		    protected void onUpdate(){
 		        this.updatedAt = new Date();
 		    }
+
+			public int getAvg() {
+				return avg;
+			}
+
+			public void setAvg(int avg) {
+				this.avg = avg;
+			}
 		    
 		    
 		    

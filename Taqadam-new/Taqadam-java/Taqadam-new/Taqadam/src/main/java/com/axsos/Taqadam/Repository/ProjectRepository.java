@@ -14,5 +14,5 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
 	@Query(value="SELECT * FROM projects where user_id=?1", nativeQuery=true)
     List<Project> allPrjectsforThisUserById(Long id);
 	Optional<Project> findById(Long id);
-
+	List<Project> findTop3ByOrderByAvgDesc();
 }

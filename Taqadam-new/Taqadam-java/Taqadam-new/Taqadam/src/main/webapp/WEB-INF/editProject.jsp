@@ -30,6 +30,42 @@
     </style>
 </head>
    <body style="background-color: #cbbf98;">
+   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #b4bcb2;">
+        <div class="container">
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar brand -->
+                <a class="navbar-brand mt-2 mt-lg-0" href="/home">
+                    <img src="/photo/taqdam-01.png" height="45" alt="taqadm_logo">
+                </a>
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white fs-5" href="/main">Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fs-5" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link text-white fs-5" href="#">Contact Us</a>
+                    </li>
+                </ul>
+                <!-- Left links -->
+            </div>
+            <div class="d-flex align-items-center ">
+                <ul class="nav nav-tabs " style="border: none;">
+                    
+                    	<li class="nav-item">
+                    	<form id="logoutForm" method="POST" action="/logout" >
+					        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					        <input class="btn btn-outline-secondary active" type="submit" value="Log out!" />
+					    </form>
+                        
+                   		</li>
+               	 </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container" >
     		<div class="row" style="height:100px"></div>
     		<div class="row">
@@ -61,7 +97,7 @@
                        <form:input placeholder="Tech" path="tech"/>                   
                     </div>
                     <div class="row mb-3">
-                    <input type="submit" class="btn btn-warning mb-3" value="Create"/>
+                    <input type="submit" class="btn btn-warning mb-3" value="Edit"/>
                     </div>
                     </form:form>
                     </div> 

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isErrorPage="true" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,39 +114,37 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #b4bcb2;">
         <div class="container">
-            <img src='/photo/taqdam-01.png' height="45" alt="movie_logo">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon" style="color: white;"></span>
-            </button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar brand -->
+                <a class="navbar-brand mt-2 mt-lg-0" href="/home">
+                    <img src="/photo/taqdam-01.png" height="45" alt="taqadm_logo">
+                </a>
+                <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a href="/" class="btn outline-dark btn-sm ms-3" style="color:black; font-size:16px;">Home</a>
-                    </li>
-                    <li class="nav-item" >
-                        <select class="form-select" style="background-color: #b4bcb2;border: none;font-size:16px;color: black;" aria-label="Default select example">
-                            <option selected>Specialist</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                        <a class="nav-link text-white fs-5" href="/main">Home </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="btn outline-dark btn-sm ms-3"
-                            style="color:black; font-size:16px;">Companies</a>
+                        <a class="nav-link text-white fs-5" href="#">About Us</a>
                     </li>
-
-                    <li class="nav-item">
-                        <a href="" class="btn outline-dark btn-sm ms-3"
-                            style="color:black; font-size:16px;">Associations</a>
+                    <li class="nav-item ">
+                        <a class="nav-link text-white fs-5" href="#">Contact Us</a>
                     </li>
                 </ul>
-                <div class="nav-item">
-                    <a href="" class="btn btn-outline-secondary" style="font-size:16px;color: black;">Logout</a>
-                </div>
-
+                <!-- Left links -->
+            </div>
+            <div class="d-flex align-items-center ">
+                <ul class="nav nav-tabs " style="border: none;">
+                    
+                    	<li class="nav-item">
+                    	<form id="logoutForm" method="POST" action="/logout" >
+					        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					        <input class="btn btn-outline-secondary active" type="submit" value="Log out!" />
+					    </form>
+                        
+                   		</li>
+               	 </ul>
             </div>
         </div>
     </nav>
@@ -168,7 +167,9 @@
                            <c:when test="${name == 'ROLE_STUDENT'}">
         					 </c:when>          
                            <c:otherwise>
+                           <c:if test="${count == 0  }">
                            <button class="col-2 btn btn-warning mx-2" ><a href="/addtolist/${thisProject.id}" style="text-decoration: none;color:black;">Add to Favorites</a></button>
+                           </c:if>
                            </c:otherwise>
                            </c:choose>
                            
@@ -183,9 +184,9 @@
                                     style="width:298px;height:197px;">
                             </div>
                             <div class="flip-card-back">
-                                <h1>John Doe</h1>
+                                <h1>Project Picture</h1>
                                 <p>Architect & Engineer</p>
-                                <p>We love that guy</p>
+                                <p>Just Do It</p>
                             </div>
                         </div>
                     </div>
@@ -204,12 +205,7 @@
                            <div class="col-1 mb-2  d-flex justify-content-center"" >1</div>
                               <input type="range" class="col-6 mb-2" min="0" max="10" step="1" name="range" id="customRange3">
                            <div class="col-1 d-flex justify-content-center">10</div>
-                       </div>
-                    </div>
-                             
-                   					<div class="container">
-                                    	<div class="row">
-                                    		<div class="col-2 mb-2  d-flex justify-content-start align-items-center">
+                           <div class="col-2 mb-2  d-flex justify-content-start align-items-center">
                                      			<button type="submit" class="btn btn-secondary ">Rank</button>
                                    				 <span style="font-size: 15px; font-weight: bold;margin-left:10px;">${avg}</span>      
                                     		</div>
@@ -217,22 +213,20 @@
                                    </div>
                                 </form>
                                  <div class="container">
+                                 <div class="row border ">
                                  <c:forEach var="comment" items="${comments}">
-                                    	<div class="row">
-                                    		<div class="col-2 mb-2  d-flex justify-content-start align-items-center">
+                                    	<div class="row ">
+                                    		<div class="col-4 mb-2 d-flex justify-content-start align-items-center">
                                 
-                                <p class="col"><c:out value="${comment.user.userName}"></c:out> <c:out value="${comment.createdAt}"></c:out></p>
-                                </div>
-                                <div class="row">
-                                <p class="col"><c:out value="${comment.comment}"></c:out></p>
+                                <p><c:out value="${comment.user.userName}"></c:out> -- <c:out value="${comment.comment}"></c:out> -- <fmt:formatDate value="${comment.createdAt}" type="date" pattern="yyyy-MM-dd"/></p>
                                 </div>
                                 </div>
-                            
+                            	
                                 </c:forEach>
                                 </div>
-                            
+                            	</div>
                                 <div class="container">
-                                    	<div class="row">
+                                    	<div class="row mt-3">
                                     		<div class="col-12 mb-2  d-flex justify-content-start align-items-center">
                                  <form action="/comment/${thisProject.id }" method="POST">
                           			 <p><input name="comment">

@@ -43,10 +43,12 @@ public class ProjectService {
     	editProject.setField(project.getField());
     	editProject.setDescription(project.getDescription());
     	editProject.setTech(project.getTech());
-    	projectRepository.save(editProject);
-    	
+    	projectRepository.save(editProject);    	
     }
   public List<Project> allProjectsforThisUser(Long id){
 	  return projectRepository.allPrjectsforThisUserById(id);
+  }
+  public List<Project> findTop(){
+	  return projectRepository.findTop3ByOrderByAvgDesc();
   }
 }

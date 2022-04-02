@@ -22,6 +22,7 @@ import com.axsos.Taqadam.Models.Project;
 import com.axsos.Taqadam.Models.Rate;
 import com.axsos.Taqadam.Models.Role;
 import com.axsos.Taqadam.Models.User;
+import com.axsos.Taqadam.Service.ProjectService;
 import com.axsos.Taqadam.Service.UserService;
 
 @Controller
@@ -29,9 +30,30 @@ public class HomeController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/main")
-	public String main() {
-		return "main.jsp";
+	@Autowired
+	private ProjectService projectService;
+	
+	@GetMapping("/user/{id}")
+	public String main(@PathVariable("id")Long id,Principal principal) {
+		String username = principal.getName();
+	       User user=  userService.findByUsername(username);
+	       Role role = userService.findByUser(user.getId());
+		     
+	          if(role.getId()==4) {
+		        return "redirect:/home/student";
+		        }
+		       else if (role.getId()==1) {
+		       return "redirect:/home/company";
+		        }
+		       else if(role.getId()==3) {
+		    	   return "redirect:/home/association";
+		       }
+		       else if(role.getId()==2) {
+		    	   return "redirect:/home/admin";
+		       }
+		       else {
+		    	   return "login.jsp";
+		       }
 	}
 	@GetMapping("/home")
 	public String home() {
@@ -53,9 +75,11 @@ public class HomeController {
 	     for(Rate rate :rates ) { 
 	    	sum = sum +rate.getRate();	    	 
 	     }
-	     
+	     if(sum != 0) {
 	     int avg = sum/rates.size();
-	     
+	     project.setAvg(avg);
+	     projectService.createProject(project);
+	     model.addAttribute("avg", avg);}
 	     List<Rate> comments = userService.allRatesForProject(project.getId());    
 	     List<Rate> realComments = new ArrayList<Rate>();	     
 	     for(Rate comment : comments) {
@@ -63,7 +87,15 @@ public class HomeController {
 	    		 realComments.add(comment);	
 	    	 }
 	     }
-	     model.addAttribute("avg", avg);
+	     int count=0;
+	    List<Rate> favorits= userService.allRatesForProject(id);
+	    for(Rate favorit : favorits) {
+	    	 if (favorit.getFavorite() == 1 && favorit.getUser().getId()==user.getId()) {
+	    		 	count+=1;
+	    	 }
+	     }
+	    
+	     model.addAttribute("count", count);
 	     model.addAttribute("thisProject", project);
 	     model.addAttribute("thisUser", user);
 	     model.addAttribute("name", name);
@@ -105,7 +137,7 @@ public class HomeController {
 	     Rate add = new Rate();
 	     add.setUser(user);
 	     add.setProject(project);
-	     add.setFavorite(0);
+	     add.setFavorite(1);
 	     userService.createRate(add);
 	     
 	     return "redirect:/project/details/{id}";

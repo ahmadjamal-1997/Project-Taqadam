@@ -8,6 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Registration Page</title>
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
@@ -31,6 +33,49 @@
 </head>
 <body>
    <body style="background-color: #cbbf98;">
+   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #b4bcb2;">
+        <div class="container">
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar brand -->
+                <a class="navbar-brand mt-2 mt-lg-0" href="/home">
+                    <img src="/photo/taqdam-01.png" height="45" alt="taqadm_logo">
+                </a>
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white fs-5" href="/home">Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fs-5" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link text-white fs-5" href="#">Contact Us</a>
+                    </li>
+                </ul>
+                <!-- Left links -->
+            </div>
+            <div class="d-flex align-items-center ">
+                <ul class="nav nav-tabs " style="border: none;">
+                    
+                    	<li class="nav-item">
+                    	<div class="dropdown active" >
+							  <button class="btn btn-secondary dropdown-toggle active"  style="height:43px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+							    Sign Up
+							  </button>
+							  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							    <li><a class="dropdown-item" href="/registration/association">Sign As Association</a></li>
+							    <li><a class="dropdown-item" href="/registration/student">Sign As Student</a></li>
+							    <li><a class="dropdown-item" href="/registration/company">Sign As Company</a></li>
+							    <li><a class="dropdown-item" href="/registration/admin">Sign As Admin</a></li>
+							  </ul>
+						</div>
+                        
+                   		</li>
+               	 </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container-fluid" >
         <div class="row" style="height: 70px;">
         </div>
