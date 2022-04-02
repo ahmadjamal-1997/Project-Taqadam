@@ -1,3 +1,0 @@
-INDEX VERSION 1.131
-C:\Users\HP\Desktop\java taqadam last project\Taqadam-java\Taqadam-new\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\516380743.index
-\Taqadam\src\main\java

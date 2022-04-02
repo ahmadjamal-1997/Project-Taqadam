@@ -1,4 +1,0 @@
-INDEX VERSION 1.131+C:\Users\HP\Desktop\java taqadam last project\Taqadam-java\Taqadam-new\.metadata\.plugins\org.eclipse.jdt.core
-881481053.index
-1865797976.index
-3506667740.index
