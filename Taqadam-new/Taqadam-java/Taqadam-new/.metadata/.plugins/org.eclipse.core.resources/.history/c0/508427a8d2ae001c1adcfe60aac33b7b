@@ -1,0 +1,11 @@
+package com.axsos.Taqadam.Repository;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.axsos.Taqadam.Models.Student;
+
+@Repository
+public interface StudentRepository extends CrudRepository<Student, Long> {
+    Student findByEmail(String username);
+}

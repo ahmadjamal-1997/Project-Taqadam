@@ -1,0 +1,82 @@
+package com.axsos.Taqadam.Models;
+
+import java.io.File;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+@Entity
+@Table(name="projects")
+public class Project {
+	
+	
+		 	@Id
+		    @GeneratedValue(strategy = GenerationType.IDENTITY)
+		    private Long id;
+		    
+		    @NotEmpty(message="title name is required!")
+		    @Size(min=3, max=30, message="title must be between 3 and 30 characters")
+		    private String title;
+		    
+		    @NotEmpty(message="field is required!")
+		    private String field;
+		    
+		    @Size(min=3, max=30, message="description must be between 3 and 30 characters")
+		    @NotEmpty(message="description is required!")
+		    private String description;
+		    
+		    @Size(min=3, max=30, message="technique must be between 3 and 30 characters")
+		    @NotEmpty(message="technique is required!")
+		    private String tech;
+		    
+		    @NotEmpty(message="file is required!")
+		    private File file;
+		    
+		    @Column(updatable=false)
+		    @DateTimeFormat(pattern="yyyy-MM-dd")
+		    private Date createdAt;
+		    @DateTimeFormat(pattern="yyyy-MM-dd")
+		    private Date updatedAt;
+		    
+		    @ManyToMany(fetch = FetchType.EAGER)
+		    @JoinTable(
+		        name = "projects_users", 
+		        joinColumns = @JoinColumn(name = "project_id"), 
+		        inverseJoinColumns = @JoinColumn(name = "user_id"))
+		    private List<User> users;
+
+		    @ManyToOne(fetch = FetchType.LAZY)
+		    @JoinColumn(name="user_id")
+		    private User user;
+
+			@PrePersist
+		    protected void onCreate(){
+		        this.createdAt = new Date();
+		    }
+		    @PreUpdate
+		    protected void onUpdate(){
+		        this.updatedAt = new Date();
+		    }
+		    
+		    
+		    
+		    
+		    
+}

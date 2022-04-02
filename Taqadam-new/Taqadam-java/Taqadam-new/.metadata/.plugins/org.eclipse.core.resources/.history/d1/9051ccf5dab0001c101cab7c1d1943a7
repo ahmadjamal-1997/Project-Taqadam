@@ -1,0 +1,25 @@
+package com.axsos.Taqadam.Controller;
+
+import java.security.Principal;
+
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.axsos.Taqadam.Models.User;
+import com.axsos.Taqadam.Service.UserService;
+
+public class AssociationController {
+private UserService userService;
+    
+    public AssociationController(UserService userService) {
+        this.userService = userService;
+    }
+	@RequestMapping("/home/association")
+    public String homestudent(Principal principal, Model model) {
+    	 String username = principal.getName();
+         User user=  userService.findByUsername(username);
+         model.addAttribute("user", user);
+         return "homeassociation.jsp";
+    }
+
+}

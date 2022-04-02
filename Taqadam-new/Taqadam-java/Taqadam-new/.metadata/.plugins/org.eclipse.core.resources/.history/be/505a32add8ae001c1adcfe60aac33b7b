@@ -1,0 +1,49 @@
+package com.axsos.Taqadam.Service;
+
+import java.util.Optional;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.axsos.Taqadam.Models.Student;
+import com.axsos.Taqadam.Repository.RoleRepository;
+import com.axsos.Taqadam.Repository.StudentRepository;
+
+
+ 
+@Service
+public class StudentService {
+    private StudentRepository studentRepository;
+    private RoleRepository roleRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    
+    
+    
+    
+    public StudentService(StudentRepository studentRepository, RoleRepository roleRepository,
+			BCryptPasswordEncoder bCryptPasswordEncoder) {
+		super();
+		this.studentRepository = studentRepository;
+		this.roleRepository = roleRepository;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+	}
+
+	// 1
+    public void saveWithStudentRole(Student student) {
+    	student.setPassword(bCryptPasswordEncoder.encode(student.getPassword()));
+    	student.setRoles(roleRepository.findByName("ROLE_STUDENT"));
+        studentRepository.save(student);
+    }
+     
+     // 2 
+    public void saveUserWithAdminRole(Student student) {
+        student.setPassword(bCryptPasswordEncoder.encode(student.getPassword()));
+        student.setRoles(roleRepository.findByName("ROLE_ADMIN"));
+        studentRepository.save(student);
+    }    
+    
+    // 3
+    public Optional<Student> findByemail(String email) {
+        return studentRepository.findByEmail(email);
+    }
+}

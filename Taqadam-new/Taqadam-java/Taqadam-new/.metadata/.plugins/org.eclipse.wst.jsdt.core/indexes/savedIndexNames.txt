@@ -1,0 +1,7 @@
+<<<<<<< HEAD
+INDEX VERSION 1.4+C:\Users\Lenovo\Desktop\Taqadam-java\Taqadam-new\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+=======
+INDEX VERSION 1.4+C:\Users\HP\Desktop\java taqadam last project\Taqadam-java\Taqadam-new\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+516380743.index
+>>>>>>> 5b9a6aae46ca4589d32074d8abb760448aab6393
+881481053.index

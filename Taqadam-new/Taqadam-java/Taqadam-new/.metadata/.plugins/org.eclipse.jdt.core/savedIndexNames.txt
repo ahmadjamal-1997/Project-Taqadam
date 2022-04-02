@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Users\Lenovo\Desktop\Taqadam-java\Taqadam-new\.metadata\.plugins\org.eclipse.jdt.core
+3506667740.index
+1865797976.index
+881481053.index

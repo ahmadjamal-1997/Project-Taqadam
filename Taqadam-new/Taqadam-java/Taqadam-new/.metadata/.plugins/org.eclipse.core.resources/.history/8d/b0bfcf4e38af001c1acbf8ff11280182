@@ -1,0 +1,48 @@
+package com.axsos.Taqadam.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.axsos.Taqadam.Models.Role;
+import com.axsos.Taqadam.Models.Student;
+import com.axsos.Taqadam.Repository.StudentRepository;
+
+
+@Service
+public class UserDetailsServiceImplementation implements UserDetailsService {
+    private StudentRepository studentRepository;
+    
+    
+    public UserDetailsServiceImplementation(StudentRepository studentRepository) {
+		super();
+		this.studentRepository = studentRepository;
+	}
+
+	// 1
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Student student = studentRepository.findByEmail(email);
+        
+        if(student == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        
+        return new org.springframework.security.core.userdetails.User(student.getEmail(), student.getPassword(), getAuthorities(student));
+    }
+    
+    // 2
+    private List<GrantedAuthority> getAuthorities(Student student){
+        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+        for(Role role : student.getRoles()) {
+            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getName());
+            authorities.add(grantedAuthority);
+        }
+        return authorities;
+    }
+}

@@ -1,0 +1,14 @@
+package com.axsos.Taqadam.Repository;
+
+import java.util.Optional;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.axsos.Taqadam.Models.Project;
+
+public interface ProjectRepository extends CrudRepository<Project,Long> {
+
+	Optional<Project> findById(Long id);
+	
+
+}
