@@ -33,3 +33,5 @@ sees the skills and logic needed for its tasks it can contact the project studen
 17. Display header options
 18. Project details
 19. Home page
+##### Layout:
+
