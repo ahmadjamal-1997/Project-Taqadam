@@ -1,6 +1,6 @@
 # Taqadam
 ## Project Overview 
-#the platform is addressing two major problems that **faces the graduate students here In _Palestine_**,
+the platform is addressing two major problems that **faces the graduate students here In _Palestine_**,
 the first one is that the graduation projects in which they put their knowledge and experience
 gained from the university in ends in nowhere to get, the second problem is the unemployment
 graduates since they cant reach to companies to demonstrate their projects and ideas, so the main
