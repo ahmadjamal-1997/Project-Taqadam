@@ -33,6 +33,13 @@ sees the skills and logic needed for its tasks it can contact the project studen
 17. Display header options
 18. Project details
 19. Home page
+# Technologies:
+1. Java Spring
+2. BootStrap
+3. Java Script
+4. JQuery
+5. Fontawsome
+6. CSS
 # Layout:
 ![This is an image](./pictures/picture%201.PNG)
 ![This is an image](./pictures/picture%202.PNG)
