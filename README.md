@@ -40,6 +40,7 @@ sees the skills and logic needed for its tasks it can contact the project studen
 4. JQuery
 5. Fontawsome
 6. CSS
+7. MySQL
 # Layout:
 ![This is an image](./pictures/picture%201.PNG)
 ![This is an image](./pictures/picture%202.PNG)
