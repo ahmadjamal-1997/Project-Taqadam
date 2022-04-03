@@ -13,25 +13,23 @@ sees the skills and logic needed for its tasks it can contact the project studen
 2. Abdelhadi Numan.
 3. Maher Abdelkarem.
 #### Requirements:
-1. introduction
-2. overall description
-3. System Features and Requirements
-> Landing page:
-> Login and Registration.
-> Logging in as a student
-> Student page
-> Creating a new project
-> Edit information
-> Edit project information
->Display header options.
->Logging in as a company
-> Company page
-> Edit information
-> Display header options
-> Project details
-> Logging in as an association
-> Association page
-> Edit information.
-> Display header options
-> Project details
-> Home page
+> System Features and Requirements
+1. Landing page:
+2. Login and Registration.
+3. Logging in as a student
+4. Student page
+5. Creating a new project
+6. Edit information
+7. Edit project information
+8. Display header options.
+9. Logging in as a company
+10. Company page
+11. Edit information
+12. Display header options
+13. Project details
+14. Logging in as an association
+15. Association page
+16. Edit information.
+17. Display header options
+18. Project details
+19. Home page
